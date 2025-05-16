@@ -24,8 +24,8 @@ class _BibleBooksState extends State<BibleBooks> {
       mainAxisSpacing: 4.0,
       childAspectRatio: 2.0,
       children: [
-        ...BibleBook.bibleBooks.map((book) {
-          return GridTile(
+        for (final book in BibleBook.bibleBooks)
+          GridTile(
             child: InkWell(
               onTap: () {
                 setState(() {
@@ -49,8 +49,7 @@ class _BibleBooksState extends State<BibleBooks> {
                 ),
               ),
             ),
-          );
-        }),
+          ),
       ],
     );
   }
