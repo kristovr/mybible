@@ -12,20 +12,20 @@ class MyBible extends StatefulWidget {
 }
 
 class _MyBibleState extends State<MyBible> {
-  late Future<String> scripture;
+  late Future<List<Map<String, dynamic>>> scriptures;
 
   @override
   void initState() {
     super.initState();
-    scripture = loadScripture();
+    scriptures = loadScriptures();
   }
 
-  Future<String> loadScripture() async {
+  Future<List<Map<String, dynamic>>> loadScriptures() async {
     final String response = await rootBundle.loadString(
       'assets/bible_dummy_data.json',
     );
-    final data = json.decode(response);
-    return data['scripture'] ?? 'Unknown';
+    final List<dynamic> data = json.decode(response);
+    return data.cast<Map<String, dynamic>>();
   }
 
   @override
@@ -49,23 +49,39 @@ class _MyBibleState extends State<MyBible> {
       backgroundColor: Color(0xFFF5F2EA),
       body: Stack(
         children: [
-          Center(
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: floatingLabelWidth / 2,
             child: Container(
               padding: EdgeInsets.all(30.0),
               child: FutureBuilder(
-                future: scripture,
+                future: scriptures,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     return const Text('Error');
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Text('No data');
                   } else {
-                    return Text(
-                      snapshot.data ?? '',
-                      style: const TextStyle(
-                        fontFamily: 'Merriweather',
-                        fontSize: 16,
-                      ),
+                    return ListView(
+                      children:
+                          snapshot.data!.map<Widget>((item) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 4.0,
+                              ),
+                              child: Text(
+                                '${item['verse']} ${item['scripture']}',
+                                style: const TextStyle(
+                                  fontFamily: 'Merriweather',
+                                  fontSize: 16,
+                                ),
+                              ),
+                            );
+                          }).toList(),
                     );
                   }
                 },
