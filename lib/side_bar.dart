@@ -15,6 +15,8 @@ class _SideBarState extends State<SideBar> {
   bool showBibleVerse = false;
   bool showBackButton = false;
 
+  /* Need to pass the book id that was selected to the bible chapter widget */
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -25,6 +27,7 @@ class _SideBarState extends State<SideBar> {
             width: double.infinity,
             height: 120,
             child: DrawerHeader(
+              // showing the back button and different headers
               child: Row(
                 children: [
                   if (showBackButton)
