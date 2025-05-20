@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:mybible/data/db_conn.dart';
 import 'package:mybible/models/book_chapter.dart';
