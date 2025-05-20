@@ -5,11 +5,14 @@ import 'package:mybible/data/db_conn.dart';
 class BibleBooks extends StatefulWidget {
   final bool showBibleChapter;
   final ValueChanged<bool> onShowBibleChapterChange;
+  final ValueChanged<int>
+  onBookIdSelected; // callback to update the id of the book selected
 
   const BibleBooks({
     super.key,
     required this.showBibleChapter,
     required this.onShowBibleChapterChange,
+    required this.onBookIdSelected,
   });
 
   @override
@@ -60,7 +63,7 @@ class _BibleBooksState extends State<BibleBooks> {
             crossAxisCount: 3,
             crossAxisSpacing: 6.0,
             mainAxisSpacing: 6.0,
-            childAspectRatio: 1.0,
+            childAspectRatio: 1.5,
             children:
                 booksList.map((book) {
                   return GridTile(
@@ -68,7 +71,7 @@ class _BibleBooksState extends State<BibleBooks> {
                       onTap: () {
                         setState(() {
                           widget.onShowBibleChapterChange(true);
-                          // need to send a call back or be able to set or send the id of the book to side bar
+                          widget.onBookIdSelected(book.id); // pass the id
                         });
                       },
                       child: Container(
