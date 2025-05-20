@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
 class BibleVerse extends StatefulWidget {
-  // final VoidCallback onBack;
+  final int? bookId;
+  final int? chapterNum;
+  final ValueChanged<int> onVerseSelected;
 
-  const BibleVerse({super.key});
+  const BibleVerse({
+    super.key,
+    required this.bookId,
+    required this.chapterNum,
+    required this.onVerseSelected,
+  });
 
   @override
   State<BibleVerse> createState() => _BibleVerseState();
