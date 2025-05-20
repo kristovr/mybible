@@ -12,6 +12,10 @@ class MyBible extends StatefulWidget {
 }
 
 class _MyBibleState extends State<MyBible> {
+  int? selectedBookId;
+  int? selectedChapter;
+  int? selectedVerse;
+
   late Future<List<Map<String, dynamic>>> scriptures;
 
   @override
@@ -139,7 +143,26 @@ class _MyBibleState extends State<MyBible> {
           ),
         ],
       ),
-      drawer: SideBar(),
+      drawer: SideBar(
+        selectedBookId: selectedBookId,
+        selectedChapter: selectedChapter,
+        selectedVerse: selectedVerse,
+        onBookIdSelected: (id) {
+          setState(() {
+            selectedBookId = id;
+          });
+        },
+        onChapterSelected: (chapter) {
+          setState(() {
+            selectedChapter = chapter;
+          });
+        },
+        onVerseSelected: (verse) {
+          setState(() {
+            selectedVerse = verse;
+          });
+        },
+      ),
     );
   }
 }
