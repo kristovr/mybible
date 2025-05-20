@@ -4,7 +4,23 @@ import 'package:mybible/bible_chapter.dart';
 import 'package:mybible/bible_verse.dart';
 
 class SideBar extends StatefulWidget {
-  const SideBar({super.key});
+  // all state is lifted up to my_bible
+  final int? selectedBookId;
+  final int? selectedChapter;
+  final int? selectedVerse;
+  final ValueChanged<int> onBookIdSelected;
+  final ValueChanged<int> onChapterSelected;
+  final ValueChanged<int> onVerseSelected;
+
+  const SideBar({
+    super.key,
+    required this.selectedBookId,
+    required this.selectedChapter,
+    required this.selectedVerse,
+    required this.onBookIdSelected,
+    required this.onChapterSelected,
+    required this.onVerseSelected,
+  });
 
   @override
   State<SideBar> createState() => _SideBarState();
@@ -14,8 +30,6 @@ class _SideBarState extends State<SideBar> {
   bool showBibleChapter = false;
   bool showBibleVerse = false;
   bool showBackButton = false;
-
-  /* Need to pass the book id that was selected to the bible chapter widget */
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +80,14 @@ class _SideBarState extends State<SideBar> {
               child:
                   showBibleChapter
                       ? BibleChapter(
+                        onChapterSelected: (chapter) {
+                          widget.onChapterSelected(
+                            chapter,
+                          ); // passing the chapter from bible chapter widget
+                        },
+                        bookId:
+                            widget
+                                .selectedBookId!, // passing the book id to the bible chapter
                         onShowBibleVerseChange: (value) {
                           setState(() {
                             showBibleChapter = !value;
@@ -75,7 +97,15 @@ class _SideBarState extends State<SideBar> {
                         },
                       )
                       : showBibleVerse
-                      ? BibleVerse()
+                      ? BibleVerse(
+                        bookId: widget.selectedBookId,
+                        chapterNum: widget.selectedChapter,
+                        onVerseSelected: (verse) {
+                          setState(() {
+                            widget.onVerseSelected(verse);
+                          });
+                        },
+                      )
                       : BibleBooks(
                         showBibleChapter: showBibleChapter,
                         onShowBibleChapterChange: (value) {
@@ -83,6 +113,12 @@ class _SideBarState extends State<SideBar> {
                             showBibleChapter = value;
                             showBackButton = value;
                             showBibleVerse = !value;
+                          });
+                        },
+                        onBookIdSelected: (id) {
+                          setState(() {
+                            // setting the id based on the callback
+                            widget.onBookIdSelected(id);
                           });
                         },
                       ),
