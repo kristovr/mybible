@@ -9,15 +9,15 @@ Future<Database> openBibleDatabase() async {
       await getApplicationDocumentsDirectory(); // find the place where the databases are stored
   final dbPath = p.join(documentsDirectory.path, 'bible.db');
 
-  if (!await File(dbPath).exists()) {
-    // remove this when I have an updated Bible db
-    ByteData data = await rootBundle.load('assets/bible.db');
-    List<int> bytes = data.buffer.asInt8List(
-      data.offsetInBytes,
-      data.lengthInBytes,
-    );
-    await File(dbPath).writeAsBytes(bytes, flush: true);
-  }
+  // if (!await File(dbPath).exists()) {
+  // remove this when I have an updated Bible db
+  ByteData data = await rootBundle.load('assets/bible.db');
+  List<int> bytes = data.buffer.asInt8List(
+    data.offsetInBytes,
+    data.lengthInBytes,
+  );
+  await File(dbPath).writeAsBytes(bytes, flush: true);
+  // }
 
   return openDatabase(dbPath);
 }

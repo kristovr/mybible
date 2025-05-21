@@ -105,7 +105,7 @@ class _MyBibleState extends State<MyBible> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
-                "Genesis 1",
+                "Genesis $selectedChapter",
                 style: const TextStyle(
                   color: Colors.white,
                   fontFamily: 'MerriweatherSans',

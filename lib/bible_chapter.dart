@@ -37,6 +37,8 @@ class _BibleChapterState extends State<BibleChapter> {
       limit: 1,
     );
 
+    db.close();
+
     if (chapterMap.isNotEmpty) {
       final map = chapterMap.first;
       return BookChapter(

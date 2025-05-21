@@ -35,6 +35,8 @@ class _BibleBooksState extends State<BibleBooks> {
       'tbl_book',
     ); // returns the entire table
 
+    db.close();
+
     return [
       for (final {
             'id': id as int,
