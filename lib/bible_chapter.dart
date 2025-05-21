@@ -32,7 +32,7 @@ class _BibleChapterState extends State<BibleChapter> {
     final db = await openBibleDatabase();
     final List<Map<String, Object?>> chapterMap = await db.query(
       'tbl_bookchapter',
-      where: 'id = ?',
+      where: 'book_id = ?',
       whereArgs: [widget.bookId],
       limit: 1,
     );

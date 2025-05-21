@@ -30,22 +30,24 @@ class _BibleBooksState extends State<BibleBooks> {
 
   Future<List<Book>> loadBooks() async {
     final db = await openBibleDatabase();
+    try {
+      // returns the entire table
+      final List<Map<String, Object?>> bookMaps = await db.query('tbl_book');
 
-    final List<Map<String, Object?>> bookMaps = await db.query(
-      'tbl_book',
-    ); // returns the entire table
-
-    db.close();
-
-    return [
-      for (final {
-            'id': id as int,
-            'name': name as String,
-            'abbr': abbr as String,
-          }
-          in bookMaps)
-        Book(id: id, name: name, abbr: abbr),
-    ];
+      return [
+        for (final {
+              'id': id as int,
+              'name': name as String,
+              'abbr': abbr as String,
+            }
+            in bookMaps)
+          Book(id: id, name: name, abbr: abbr),
+      ];
+    } catch (e) {
+      rethrow;
+    } finally {
+      db.close();
+    }
   }
 
   @override

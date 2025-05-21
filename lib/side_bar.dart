@@ -11,6 +11,7 @@ class SideBar extends StatefulWidget {
   final ValueChanged<int> onBookIdSelected;
   final ValueChanged<int> onChapterSelected;
   final ValueChanged<int> onVerseSelected;
+  final Function onLoadChapterScripture;
 
   const SideBar({
     super.key,
@@ -20,6 +21,7 @@ class SideBar extends StatefulWidget {
     required this.onBookIdSelected,
     required this.onChapterSelected,
     required this.onVerseSelected,
+    required this.onLoadChapterScripture,
   });
 
   @override
@@ -100,6 +102,8 @@ class _SideBarState extends State<SideBar> {
                       ? BibleVerse(
                         bookId: widget.selectedBookId,
                         chapterNum: widget.selectedChapter,
+                        // lift state up to my_bible
+                        onLoadChapterScripture: widget.onLoadChapterScripture,
                         onVerseSelected: (verse) {
                           setState(() {
                             widget.onVerseSelected(verse);

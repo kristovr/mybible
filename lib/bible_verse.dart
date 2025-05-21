@@ -6,12 +6,14 @@ class BibleVerse extends StatefulWidget {
   final int? bookId;
   final int? chapterNum;
   final ValueChanged<int> onVerseSelected;
+  final Function onLoadChapterScripture;
 
   const BibleVerse({
     super.key,
     required this.bookId,
     required this.chapterNum,
     required this.onVerseSelected,
+    required this.onLoadChapterScripture,
   });
 
   @override
@@ -77,6 +79,8 @@ class _BibleVerseState extends State<BibleVerse> {
                       child: InkWell(
                         onTap: () {
                           widget.onVerseSelected(i);
+                          // send a callback to run the future builder
+                          widget.onLoadChapterScripture();
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
