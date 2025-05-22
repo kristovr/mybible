@@ -30,25 +30,30 @@ class _BibleVerseState extends State<BibleVerse> {
 
   Future<BookChapterVerse> loadBookChapterVerse() async {
     final db = await openBibleDatabase();
-    final List<Map<String, Object?>> chapterVerseMap = await db.query(
-      'tbl_bookchapterverse',
-      where: 'book_id = ? and chapter = ?',
-      whereArgs: [widget.bookId, widget.chapterNum],
-      limit: 1,
-    );
 
-    db.close();
-
-    if (chapterVerseMap.isNotEmpty) {
-      final map = chapterVerseMap.first;
-      return BookChapterVerse(
-        id: map['id'] as int,
-        bookId: map['book_id'] as int,
-        chapter: map['chapter'] as int,
-        verses: map['verses'] as int,
+    try {
+      final List<Map<String, Object?>> chapterVerseMap = await db.query(
+        'tbl_bookchapterverse',
+        where: 'book_id = ? and chapter = ?',
+        whereArgs: [widget.bookId, widget.chapterNum],
+        limit: 1,
       );
-    } else {
-      return BookChapterVerse(id: 0, bookId: 0, chapter: 0, verses: 0);
+
+      if (chapterVerseMap.isNotEmpty) {
+        final map = chapterVerseMap.first;
+        return BookChapterVerse(
+          id: map['id'] as int,
+          bookId: map['book_id'] as int,
+          chapter: map['chapter'] as int,
+          verses: map['verses'] as int,
+        );
+      } else {
+        return BookChapterVerse(id: 0, bookId: 0, chapter: 0, verses: 0);
+      }
+    } catch (e) {
+      rethrow;
+    } finally {
+      db.close();
     }
   }
 
