@@ -1,7 +1,7 @@
 # My Bible
 #### A personal Bible application built with Flutter
 
-![App screenshot 1](assets/images/mybible1.png "Screenshot 1")
+!<img src="assets/images/mybible1.png" alt="screenshot 1" width="200"/>
 ![App screenshot 2](assets/images/mybible2.png "Screenshot 2")
 
 ## Description
