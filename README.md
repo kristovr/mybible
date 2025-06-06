@@ -8,6 +8,15 @@
 This application is a Bible Reader that can be used to navigate to different scriptures.
 It has a built-in SQLite database with the Bible but it is - `incomplete`
 
+## Features
+* Home Screen - shows one chapter at a time.
+    * Lower navigation - shows the current book and chapter and the chevron icon buttons allow
+    for navigation to the next and previous chapter.
+* Sidebar - lists all the books of the Bible. When a book is tapped the list of chapters for that
+    book is shown. When the chapter is tapped the list of verses for that chapter is shown.
+
+* Tapping on the verse shows the selected portion of scripture.
+
 ## Installation Guide
 
 Before beginning with the installation, you will need the following with the mentioned versions
