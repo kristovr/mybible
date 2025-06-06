@@ -1,10 +1,13 @@
-# mybible
+# My Bible
+#### A personal Bible application built with Flutter
 
-A new Flutter project.
+![App screenshot 1](assets/images/mybible1.png "Screenshot 1")
+![App screenshot 2](assets/images/mybible2.png "Screenshot 2")
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This application is a Bible Reader that can be used to navigate to different scriptures.
+It has a built-in SQLite database with the bible. `incomplete`
 
 A few resources to get you started if this is your first Flutter project:
 
