@@ -6,7 +6,18 @@
 ## Description
 
 This application is a Bible Reader that can be used to navigate to different scriptures.
-It has a built-in SQLite database with the bible. `incomplete`
+It has a built-in SQLite database with the Bible but it is - `incomplete`
+
+## How to run this project
+
+#### Step 1
+Clone this project via GitHub
+
+###### HTTPS
+`https://github.com/kristovr/mybible.git`
+
+###### SSH
+`git@github.com:kristovr/mybible.git`
 
 A few resources to get you started if this is your first Flutter project:
 
