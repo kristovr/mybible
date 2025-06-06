@@ -13,11 +13,12 @@ It has a built-in SQLite database with the Bible but it is - `incomplete`
 #### Step 1
 Clone this project via GitHub
 
-###### HTTPS
-`https://github.com/kristovr/mybible.git`
+###### HTTPS or SSH
+```
+HTTPS: https://github.com/kristovr/mybible.git
 
-###### SSH
-`git@github.com:kristovr/mybible.git`
+SSH: git@github.com:kristovr/mybible.git
+```
 
 A few resources to get you started if this is your first Flutter project:
 
