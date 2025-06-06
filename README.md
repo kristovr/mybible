@@ -61,6 +61,8 @@ flutter run
 ```
 * You can also run the project through an IDE.
 
+## More Information
+
 You can find more resources here on the flutter website.
 A few resources to get you started if this is your first Flutter project:
 
